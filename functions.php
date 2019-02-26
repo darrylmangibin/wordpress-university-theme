@@ -34,7 +34,12 @@ function university_files() {
     wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
     wp_enqueue_style('university_main_styles', get_stylesheet_uri(), NULL, microtime(), false);
 
+    wp_enqueue_script('jquery');
     wp_enqueue_script('main-university-js', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
+    wp_enqueue_script('search-js', get_theme_file_uri('/js/modules/search.js'), array('jquery'), null, true);
+    wp_localize_script( 'search-js', 'universityData', array(
+        'root_url' => get_site_url()
+    ));
 }
 
 add_action('wp_enqueue_scripts', 'university_files');
